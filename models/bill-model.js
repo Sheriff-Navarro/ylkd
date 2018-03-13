@@ -8,15 +8,15 @@ const myBillSchema = new Schema (
       required: true
     },
     amount: {
+      type: Number,
+      required: true
+    },
+    dueDate: {
       type: Date,
-      required: true
+      required: false
     },
-    recurring: {
-      type: Booleann,
-      required: true
-    },
-    recurringDate: {
-      type: Date
+    recurringFrequency: {
+      type: String
     },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },

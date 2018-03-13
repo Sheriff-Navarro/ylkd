@@ -45,6 +45,9 @@ app.use(cors({
 const myAuthRoutes = require('./routes/auth-routes');
 app.use('/', myAuthRoutes);
 
+const myBillRoutes = require('./routes/bill-routes');
+app.use('/', myBillRoutes);
+
 
 
 //ROUTES ------------------------------------------------------
