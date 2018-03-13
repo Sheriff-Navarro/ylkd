@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const BillModel = require('../models/bill-model');
 const UserModel = require('../models/user-model');
+const authorizeBill = require('../middleware/authorize-bill');
 const router = express.Router();
 
 router.post('/api/bills', (req, res, next) => {
@@ -43,7 +44,25 @@ theBill.save((err) =>{
   }) //close the Bill.Save()
 })//close the post route
 
+// router.post('api/bills/:id/delete', authorizeBill, (req, res, next) => {
+//     const billId = req.params.id;
+//
+//     Bill.findByIdAndRemove(billId, (err, bill) => {
+//       if (err){ return next(err); }
+//       return res.redirect('/profile');
+//     });
+//   });
 
+
+// router.post('api/bills/:id/delete', authorizeBill, (req, res, next) => {
+//   const billId = req.params.id;
+//
+//   Bill.findByIdAndRemove(billId, (err, bill) => {
+//     if (err) {return next(err)
+//     }
+//     return res.redirect('/api/bills');
+//   });
+// });
 
 
 
