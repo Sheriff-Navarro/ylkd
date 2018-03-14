@@ -48,6 +48,9 @@ app.use('/', myAuthRoutes);
 const myBillRoutes = require('./routes/bill-routes');
 app.use('/', myBillRoutes);
 
+const myIncomeRoutes = require('./routes/income-routes');
+app.use('/', myIncomeRoutes);
+
 
 
 //ROUTES ------------------------------------------------------

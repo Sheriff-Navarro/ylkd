@@ -8,15 +8,15 @@ const myIncomeSchema = new Schema (
       required: true
     },
     amount: {
-      type: Date,
+      type: Number,
       required: true
     },
-    recurring: {
-      type: Booleann,
-      required: true
+    receivingDate: {
+      type: Boolean,
+      required: false
     },
-    recurringDate: {
-      type: Date
+    recurringFrequency: {
+      type: String
     },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },
