@@ -44,28 +44,32 @@ theBill.save((err) =>{
   }) //close the Bill.Save()
 })//close the post route
 
-// router.post('api/bills/:id/delete', authorizeBill, (req, res, next) => {
-//     const billId = req.params.id;
-//
-//     Bill.findByIdAndRemove(billId, (err, bill) => {
-//       if (err){ return next(err); }
-//       return res.redirect('/profile');
-//     });
-//   });
 
+router.post('/api/bills/:id/delete', (req, res, next) => {
+  //Assign billId to the params.id so mongoose can find the bill and delete it from the DB.
+  const billId = req.params.id;
+  //Delete post method
+  BillModel.findByIdAndRemove(billId, (err, bill) => {
+    if(err){return next(err)}
+    return res.status(200).json({message: 'The Bill has been deleted.'})
+  });//BillModel.findByIdAndRemove close
+});//Router.post close
 
-// router.post('api/bills/:id/delete', authorizeBill, (req, res, next) => {
-//   const billId = req.params.id;
-//
-//   Bill.findByIdAndRemove(billId, (err, bill) => {
-//     if (err) {return next(err)
-//     }
-//     return res.redirect('/api/bills');
-//   });
-// });
-
-
-
+//Edit Route:
+router.post('/api/bills/:id/edit', (req, res, next) => {
+  const billId = req.params.id;
+  const updates = {
+    name: req.body.billName,
+    amount: req.body.billAmount,
+    recurringFrequency: req.body.billRecurringFrequency
+  };
+    BillModel.findByIdAndUpdate(billId, updates, (err, bill) => {
+      if (err) {return next(err);}
+      return res.status(200).json({
+        message: 'The bill information has been updated.'
+      });      
+    });
+});
 
 
 

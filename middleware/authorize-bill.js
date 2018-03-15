@@ -1,6 +1,5 @@
 const Bill = require('../models/bill-model');
 
-
 function authorizeBill(req, res, next) {
   Bill.findById(req.params.id, (err, drive) => {
     //If there is an error, forward the error:
@@ -18,6 +17,5 @@ function authorizeBill(req, res, next) {
     }
   });
 }
-
 
 module = authorizeBill;

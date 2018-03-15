@@ -50,9 +50,6 @@ app.use('/', myBillRoutes);
 
 const myIncomeRoutes = require('./routes/income-routes');
 app.use('/', myIncomeRoutes);
-
-
-
 //ROUTES ------------------------------------------------------
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

@@ -41,9 +41,32 @@ theIncome.save((err) =>{
     req.user.encryptedPassword = undefined;
     theIncome.user = req.user;
     //Success
-    res.status(200).json(theBill)
+    res.status(200).json(theIncome)
   }) //close the Bill.Save()
 })//close the post route
+
+router.post('/api/income/:id/delete', (req, res, next) => {
+  const incomeId = req.params.id;
+  IncomeModel.findByIdAndRemove(incomeId, (err, income) => {
+    if(err){return next(err)}
+    return res.status(200).json({message: 'Income resource deleted.'})
+  })
+})
+
+//Edit Route:
+router.post('/api/income/:id/edit', (req, res, next) => {
+  const incomeId = req.params.id;
+  const updates = {
+    name: req.body.incomeName,
+    amount: req.body.incomeAmount,
+    recurringFrequency: req.body.incomeRecurringFrequency};
+    IncomeModel.findByIdAndUpdate(incomeId, updates, (err, income) => {
+      if (err) {return next(err);}
+      return res.status(200).json({
+      message: 'Income has been updated.'})
+    });
+});
+
 
 
 
