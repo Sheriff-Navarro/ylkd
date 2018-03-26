@@ -12,58 +12,60 @@ if(!req.user) {
     res.status(401).json({message: 'Log in to create an excercise.'})
     return;
   }
-const theIncome = new IncomeModel({
-  name: req.body.incomeName,
-  amount: req.body.incomeAmount,
-  receivingDate: req.body.incomeReceivingDate,
-  recurringFrequency: req.body.incomeRecurringFrequency,
+const theExcercise = new ExcerciseModel({
+  name: req.body.excerciseName,
+  weight: req.body.excerciseWeight,
+  reps: req.body.excerciseReps,
+  workout: req.body.workout,
   user: req.user._id
   });
 //Handle the unknown errors from the database.
-theIncome.save((err) =>{
-  if(err && theIncome.errors === undefined){
+theExcercise.save((err) =>{
+  if(err && theExcercise.errors === undefined){
       res.status(500).json({
-        message: 'Database could not save the income resource.'
+        message: 'Database could not save the excercise.'
       });
       return;
     }
     //Validation error
-    if (err && theIncome.errors) {
+    if (err && theExcercise.errors) {
       res.status(400).json({
-        nameError: theIncome.errors.name,
-        amountError: theIncome.errors.amount,
-        incomeReceivingDateError: theIncome.errors.receivingDate,
-        recurringFrequencyError: theIncome.errors.recurringFrequency
+        nameError: theExcercise.errors.name,
+        weightError: theExcercise.errors.weight,
+        repsError: theExcercise.errors.reps,
+        workout: theExcercise.errors.workout,
+        user: theExcercise.errors.user
       });
       return;
     }
     //Put the full user info here for Angular, BUT hide their password Bcrypt hash.
     req.user.encryptedPassword = undefined;
-    theIncome.user = req.user;
+    theExcercise.user = req.user;
     //Success
-    res.status(200).json(theIncome)
+    res.status(200).json(theExcercise)
   }) //close the Bill.Save()
 })//close the post route
 
-router.post('/api/income/:id/delete', (req, res, next) => {
-  const incomeId = req.params.id;
-  IncomeModel.findByIdAndRemove(incomeId, (err, income) => {
+router.post('/api/excercise/:id/delete', (req, res, next) => {
+  const excerciseId = req.params.id;
+  ExcerciseModel.findByIdAndRemove(excerciseId, (err, excercise) => {
     if(err){return next(err)}
-    return res.status(200).json({message: 'Income resource deleted.'})
+    return res.status(200).json({message: 'Excercise deleted.'})
   })
 })
 
 //Edit Route:
-router.post('/api/income/:id/edit', (req, res, next) => {
-  const incomeId = req.params.id;
+router.post('/api/excercise/:id/edit', (req, res, next) => {
+  const excerciseId = req.params.id;
   const updates = {
-    name: req.body.incomeName,
-    amount: req.body.incomeAmount,
-    recurringFrequency: req.body.incomeRecurringFrequency};
-    IncomeModel.findByIdAndUpdate(incomeId, updates, (err, income) => {
+    name: req.body.excerciseName,
+    weight: req.body.excerciseWeight,
+    reps: req.body.excerciseReps,
+    workout: req.body.workout};
+    ExcerciseModel.findByIdAndUpdate(excerciseId, updates, (err, excercise) => {
       if (err) {return next(err);}
       return res.status(200).json({
-      message: 'Income has been updated.'})
+      message: 'Excercise has been updated.'})
     });
 });
 

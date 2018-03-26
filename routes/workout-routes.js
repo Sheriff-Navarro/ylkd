@@ -67,7 +67,7 @@ router.post('/api/workout/:id/edit',  (req, res, next) => {
 });
 
 
-//TO DO: ADD AUTHORIZE BILL AND AUTHORIZE INCOME
+//TO DO: ADD AUTHORIZE BILL AND AUTHORIZE Excercise
 //TO DO: ADD ENSURELOGGEDIN FOR ALL ROUTES
 
 
