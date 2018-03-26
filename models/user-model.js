@@ -19,8 +19,8 @@ const myUserSchema = new Schema (
       type: String,
       default: '../../assets/images/user.svg'
     },
-    bill: [{type: Schema.Types.ObjectId, ref: 'Bill', required: true}],
-    income: [{type: Schema.Types.ObjectId, ref: 'Income', required: true}]
+    workout: [{type: Schema.Types.ObjectId, ref: 'Workout', required: true}],
+    excercises: [{type: Schema.Types.ObjectId, ref: 'Excercise', required: true}]
   },
   {
     timestamps: true

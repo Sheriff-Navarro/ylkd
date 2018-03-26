@@ -1,15 +1,15 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-const BillModel = require('../models/bill-model');
-const IncomeModel = require('../models/income-model');
+const ExcerciseModel = require('../models/excercise-model');
+const WorkoutModel = require('../models/workout-model');
 const UserModel = require('../models/user-model');
-const authorizeBill = require('../middleware/authorize-bill');
+// const authorizeBill = require('../middleware/authorize-bill');
 const router = express.Router();
 
-router.post('/api/income', (req, res, next) => {
+router.post('/api/excercise', (req, res, next) => {
 if(!req.user) {
-    res.status(401).json({message: 'Log in to create a income resource.'})
+    res.status(401).json({message: 'Log in to create an excercise.'})
     return;
   }
 const theIncome = new IncomeModel({

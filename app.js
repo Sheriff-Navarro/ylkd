@@ -9,6 +9,7 @@ const session = require('express-session');
 const passport = require('passport');
 const index = require('./routes/index');
 const users = require('./routes/users');
+const authorizeBill = require('./middleware/authorize-bill');
 const cors = require('cors');
 const app = express();
 
@@ -45,11 +46,11 @@ app.use(cors({
 const myAuthRoutes = require('./routes/auth-routes');
 app.use('/', myAuthRoutes);
 
-const myBillRoutes = require('./routes/bill-routes');
-app.use('/', myBillRoutes);
+const myWorkoutRoutes = require('./routes/workout-routes');
+app.use('/', myWorkoutRoutes);
 
-const myIncomeRoutes = require('./routes/income-routes');
-app.use('/', myIncomeRoutes);
+const myExcerciseRoutes = require('./routes/excercise-routes');
+app.use('/', myExcerciseRoutes);
 //ROUTES ------------------------------------------------------
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

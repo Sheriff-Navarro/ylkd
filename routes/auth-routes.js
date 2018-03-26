@@ -1,14 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-
-
+const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 const UserModel = require('../models/user-model');
 
 
 const router = express.Router();
 
-router.post('/api/signup', (req, res, next) => {
+router.post('/api/signup', ensureLoggedOut(), (req, res, next) => {
     if (!req.body.signupEmail || !req.body.signupPassword) {
         // 400 for client errors (user needs to fix something)
         res.status(400).json({ message: 'Both email and password are required.' });
@@ -70,7 +69,7 @@ router.post('/api/signup', (req, res, next) => {
     ); // close UserModel.findOne()
 }); // close router.post('/signup', ...
 
-router.post('/api/login', (req, res, next) =>{
+router.post('/api/login', ensureLoggedOut(), (req, res, next) =>{
   const authenticateFunction =
     passport.authenticate('local', (err, theUser, extraInfo) =>{
       if (err) {
@@ -137,7 +136,7 @@ router.post('/api/login', (req, res, next) =>{
 // });
 
 
-router.post('/api/logout', (req, res, next) => {
+router.post('/api/logout', ensureLoggedIn(), (req, res, next) => {
   req.logout();
   res.status(200).json({message: 'You have been logged out successfully.'})
   return;
