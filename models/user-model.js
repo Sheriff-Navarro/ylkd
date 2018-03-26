@@ -19,7 +19,15 @@ const myUserSchema = new Schema (
       type: String,
       default: '../../assets/images/user.svg'
     },
-    workout: [{type: Schema.Types.ObjectId, ref: 'Workout', required: true}],
+    weight: {
+    type: Number,
+    required: false
+    },
+    height: {
+    type: Number,
+    required: false
+    },
+    workouts: [{type: Schema.Types.ObjectId, ref: 'Workout', required: true}],
     excercises: [{type: Schema.Types.ObjectId, ref: 'Excercise', required: true}]
   },
   {

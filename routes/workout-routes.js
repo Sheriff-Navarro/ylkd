@@ -58,7 +58,7 @@ router.post('/api/workout/:id/edit',  (req, res, next) => {
     name: req.body.workoutName,
     duration: req.body.workoutAmount,
   };
-    WorkoutModel.findByIdAndUpdate(workoutId, updates, (err, bill) => {
+    WorkoutModel.findByIdAndUpdate(workoutId, updates, (err, workout) => {
       if (err) {return next(err);}
       return res.status(200).json({
         message: 'The workout information has been updated.'

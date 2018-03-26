@@ -36,7 +36,9 @@ router.post('/api/signup', ensureLoggedOut(), (req, res, next) => {
             fullName: req.body.signupFullName,
             email: req.body.signupEmail,
             encryptedPassword: scrambledPassword,
-            picture: req.body.signupPicture
+            picture: req.body.signupPicture,
+            weight: req.body.signupWeight,
+            height: req.body.signupHeight
           });
 
           // if (req.file) {
@@ -96,45 +98,6 @@ router.post('/api/login', ensureLoggedOut(), (req, res, next) =>{
     });
     authenticateFunction(req, res, next);
 });
-
-
-// This is different because passport.authenticate() redirects
-// (APIs normally shouldn't redirect)
-// router.post('/api/login', (req, res, next) => {
-//     const authenticateFunction =
-//       passport.authenticate('local', (err, theUser, extraInfo) => {
-//           // Errors prevented us from deciding if login was a success or failure
-//           if (err) {
-//             res.status(500).json({ message: 'Sorry, error during login.' });
-//             return;
-//           }
-//
-//           // Login failed for sure if "theUser" is empty
-//           if (!theUser) {
-//             // "extraInfo" contains feedback messages from LocalStrategy
-//             res.status(401).json(extraInfo);
-//             return;
-//           }
-//
-//           // Login successful, save them in the session.
-//           req.login(theUser, (err) => {
-//               if (err) {
-//                 res.status(500).json({ message: 'Session save error 💩' });
-//                 return;
-//               }
-//
-//               // Clear the encryptedPassword before sending
-//               // (not from the database, just from the object)
-//               theUser.encryptedPassword = undefined;
-//
-//               // Everything worked! Send the user's information to the client.
-//               res.status(200).json(theUser);
-//           });
-//       });
-//
-//     authenticateFunction(req, res, next);
-// });
-
 
 router.post('/api/logout', ensureLoggedIn(), (req, res, next) => {
   req.logout();
