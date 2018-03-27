@@ -13,6 +13,11 @@ const myWorkoutSchema = new Schema (
     },
     excercises: [{ type: Schema.Types.ObjectId, ref: 'Excercise', required: false }]
   ,
+  privateWorkout: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },
   {

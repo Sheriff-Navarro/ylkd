@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 const UserModel = require('../models/user-model');
+const router = express.Router();
 
 
 router.get('/api/profile', ensureLoggedIn('/login'), (req, res, next) => {

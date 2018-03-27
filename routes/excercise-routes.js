@@ -16,7 +16,7 @@ const theExcercise = new ExcerciseModel({
   name: req.body.excerciseName,
   weight: req.body.excerciseWeight,
   reps: req.body.excerciseReps,
-  workout: req.body.workout,
+  privateExcercise: req.boody.excercisePrivacy,
   user: req.user._id
   });
 //Handle the unknown errors from the database.
@@ -61,7 +61,9 @@ router.post('/api/excercise/:id/edit', (req, res, next) => {
     name: req.body.excerciseName,
     weight: req.body.excerciseWeight,
     reps: req.body.excerciseReps,
-    workout: req.body.workout};
+    prWeight: req.body.excercisePrWeight,
+    prReps: req.body.excercisePrReps
+  };
     ExcerciseModel.findByIdAndUpdate(excerciseId, updates, (err, excercise) => {
       if (err) {return next(err);}
       return res.status(200).json({

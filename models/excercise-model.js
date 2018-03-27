@@ -31,7 +31,10 @@ const myExcerciseSchema = new Schema (
       type: Number,
       required: false
     },
-    workout: { type: Schema.Types.ObjectId, ref: 'Workout', required: true
+    privateExcercise: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },

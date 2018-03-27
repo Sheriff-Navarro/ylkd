@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const index = require('./routes/index');
-const users = require('./routes/users');
 const authorizeBill = require('./middleware/authorize-bill');
 const cors = require('cors');
 const app = express();
@@ -51,6 +50,9 @@ app.use('/', myWorkoutRoutes);
 
 const myExcerciseRoutes = require('./routes/excercise-routes');
 app.use('/', myExcerciseRoutes);
+
+const myUserRoutes = require('./routes/user-routes');
+app.use('/', myUserRoutes);
 //ROUTES ------------------------------------------------------
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
