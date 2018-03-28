@@ -15,14 +15,21 @@ const myExcerciseSchema = new Schema (
       type: Number,
       required: false
     },
-    historyWeight: {
-      type: Array,
-      required: false
-    },
-    historyReps: {
-      type: Array,
-      required: false
-    },
+    // historyWeight: {
+    //   type: Array,
+    //   required: false
+    // },
+    // historyReps: {
+    //   type: Array,
+    //   required: false
+    // },
+    history:[
+      {
+      reps: Number,
+      weight: Number,
+      createdAt: Date
+    }
+  ],
     prWeight: {
       type: Number,
       required: false

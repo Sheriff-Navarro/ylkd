@@ -16,7 +16,7 @@ const theExcercise = new ExcerciseModel({
   name: req.body.excerciseName,
   weight: req.body.excerciseWeight,
   reps: req.body.excerciseReps,
-  privateExcercise: req.boody.excercisePrivacy,
+  privateExcercise: req.body.excercisePrivacy,
   user: req.user._id
   });
 //Handle the unknown errors from the database.

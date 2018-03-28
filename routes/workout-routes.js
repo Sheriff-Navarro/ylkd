@@ -44,6 +44,43 @@ theWorkout.save((err) =>{
   }) //close the Bill.Save()
 })//close the post route
 
+router.post('/api/workout/:workoutId/addexcercise/:excerciseId', (req, res, next) => {
+  const workoutId = req.params.workoutId
+  const excerciseId = req.params.excerciseId
+
+  WorkoutModel.findById(workoutId, (err, theWorkout) => {
+        if (err) {
+          res.json(err);
+          return;
+        }
+  ExcerciseModel.findById(excerciseId, (err, theExcercise)=>{
+      if (err) {
+        res.json(err);
+        return;
+      }
+      if(theExcercise) {
+      theWorkout.excercises.push(theExcercise)
+      theWorkout.save((err)=>{
+        if (err) {
+            res.json(err);
+            return;
+          }
+        });
+      theExcercise.save((err)=>{
+          if (err) {
+              res.json(err);
+              return;
+            }
+          const data = {
+              workout: theWorkout,
+              excercise: theExcercise
+          }
+          res.json(data)
+          });
+        }
+      });
+    });
+  });
 
 router.post('/api/workout/:id/delete', (req, res, next) => {
   //Assign billId to the params.id so mongoose can find the bill and delete it from the DB.
@@ -83,6 +120,21 @@ router.get('/api/workout/all', (req, res, next) => {
   })
 })
 
+router.get('/api/workout/:id', (req, res, next) => {
+  const workoutId = req.params.id
+  WorkoutModel.findById(workoutId, (err, theWorkout)=>{
+    if (err) { return next(err) }
+  })
+  .populate('user', { encryptedPassword : 0})
+  .populate('excercises', {encryptedPassword: 0})
+  .exec((err, theWorkout)=>{
+    if (err) {
+      res.status(500).json({message: 'Could not retrieve the workout.'})
+      return;
+    }
+    res.status(200).json(theWorkout);
+  })
+})
 
 //TO DO: ADD AUTHORIZE BILL AND AUTHORIZE Excercise
 //TO DO: ADD ENSURELOGGEDIN FOR ALL ROUTES
