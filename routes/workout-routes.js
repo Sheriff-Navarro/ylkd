@@ -82,6 +82,49 @@ router.post('/api/workout/:workoutId/addexcercise/:excerciseId', (req, res, next
     });
   });
 
+  router.post('/api/workout/:workoutId/excercise/:excerciseId/addround', (req, res, next) => {
+    const workoutId = req.params.workoutId
+    const excerciseId = req.params.excerciseId
+
+    WorkoutModel.findById(workoutId, (err, theWorkout) => {
+          if (err) {
+            res.json(err);
+            return;
+          }
+    ExcerciseModel.findById(excerciseId, (err, theExcercise)=>{
+        if (err) {
+          res.json(err);
+          return;
+        }
+        if(theExcercise) {
+        const round = {
+          weight: theExcercise.weight,
+          reps: theExcercise.reps
+        }
+        console.log("Round: " + round);
+        theExcercise.history.push(round)
+        theWorkout.save((err)=>{
+          if (err) {
+              res.json(err);
+              return;
+            }
+          });
+        theExcercise.save((err)=>{
+            if (err) {
+                res.json(err);
+                return;
+              }
+            const data = {
+                workout: theWorkout,
+                excercise: theExcercise
+            }
+            res.json(data)
+            });
+          }
+        });
+      });
+    });
+
 router.post('/api/workout/:id/delete', (req, res, next) => {
   //Assign billId to the params.id so mongoose can find the bill and delete it from the DB.
   const workoutId = req.params.id;
