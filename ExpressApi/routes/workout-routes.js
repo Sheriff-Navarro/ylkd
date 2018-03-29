@@ -181,16 +181,4 @@ router.get('/api/workout/:id', (req, res, next) => {
 
 //TO DO: ADD AUTHORIZE BILL AND AUTHORIZE Excercise
 //TO DO: ADD ENSURELOGGEDIN FOR ALL ROUTES
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;

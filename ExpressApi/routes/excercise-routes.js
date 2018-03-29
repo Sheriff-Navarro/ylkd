@@ -71,16 +71,4 @@ router.post('/api/excercise/:id/edit', (req, res, next) => {
     });
 });
 
-// router.post('/api/excercise/:id/addround', (req, res, next) => {
-//   const excerciseId = req.params.id;
-//   ExcerciseModel.findById(excerciseId, (err, theExcercise) => {
-//     if (err) {
-//       res.json(err);
-//       return
-//     }
-//   })
-// })
-
-
-
 module.exports = router;
