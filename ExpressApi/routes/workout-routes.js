@@ -17,6 +17,14 @@ const theWorkout = new WorkoutModel({
   privateWorkout: req.body.workoutPrivacy,
   user: req.user._id
   });
+  //save the workout back to the user
+  req.user.workouts.push(theWorkout._id);
+  req.user.save((err)=>{
+      if (err) {
+          res.json(err);
+          return;
+        }
+      });
 //Handle the unknown errors from the database.
 theWorkout.save((err) =>{
   if(err && theWorkout.errors === undefined){
@@ -34,11 +42,11 @@ theWorkout.save((err) =>{
       });
       return;
     }
-    //save the workout back to the user
-    req.user.workouts.push(theWorkout._id);
+
     //Put the full user info here for Angular
     req.user.encryptedPassword = undefined;
     theWorkout.user = req.user;
+
     //Success
     res.status(200).json(theWorkout)
   }) //close the Bill.Save()

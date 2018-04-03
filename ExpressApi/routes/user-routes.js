@@ -7,14 +7,14 @@ const router = express.Router();
 
 
 router.get('/api/profile', ensureLoggedIn('/login'), (req, res, next) => {
-  User.find({_id: req.user._id}, (err, user) => {
+  UserModel.find({_id: req.user._id}, (err, user) => {
     if (err) { return next(err) }
   })//end of .find
   .populate('workouts', {encryptedPassword : 0 }) //if this does not work try singular 'workout'
   .populate('excercises', {encryptedPassword: 0}) //if this does not work try singular 'excercise'
   .exec((err, theUser) => {
     if (err) {
-      res.status(500).json({message: 'Could not find the recipe.'});
+      res.status(500).json({message: 'Could not find your profile.'});
       return;
     }
     res.status(200).json(theUser);

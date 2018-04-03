@@ -27,8 +27,8 @@ const myUserSchema = new Schema (
     type: Number,
     required: false
     },
-    workouts: [{type: Schema.Types.ObjectId, ref: 'Workout', required: true}],
-    excercises: [{type: Schema.Types.ObjectId, ref: 'Excercise', required: true}]
+    workouts: [{type: Schema.Types.ObjectId, ref: 'Workout', required: false}],
+    excercises: [{type: Schema.Types.ObjectId, ref: 'Excercise', required: false}]
   },
   {
     timestamps: true

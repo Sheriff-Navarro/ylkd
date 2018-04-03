@@ -14,7 +14,7 @@ const app = express();
 
 require('dotenv').config();
 require('./config/passport-config');
-
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI)
 
 // view engine setup
