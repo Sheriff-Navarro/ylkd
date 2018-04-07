@@ -27,4 +27,19 @@ export class AuthServiceService {
         // Parse the JSON
         .then(res => res.json());
   } // close login()
+
+
+checklogin() {
+      return this.httpThang
+        .get(
+          `${environment.apiBase}/api/checklogin`,
+          // Send the cookies across domains
+          { withCredentials: true }
+        )
+        // Convert from observable to promise
+        .toPromise()
+        // Parse the JSON
+        .then(res => res.json());
+  }
+
 }

@@ -46,7 +46,7 @@ errorMessage: string;
     };
     //clear error message
     this.loginErrorMessage = "";
-    this.routerThang.navigate([''])
+    this.routerThang.navigate(['/profile'])
     })
     .catch((err) => {
       const parsedError = err.json();
