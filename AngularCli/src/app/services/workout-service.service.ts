@@ -4,19 +4,16 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 
-
 @Injectable()
-export class ExcerciseServiceService {
+export class WorkoutServiceService {
 
   constructor(
     private httpThang: Http
   ) { }
 
-
-
-  newExcercise(componentInfo) {
+  newWorkout(componentInfo) {
     return this.httpThang
-    .post(`${environment.apiBase}/api/excercise/new`,
+    .post(`${environment.apiBase}/api/workout/new`,
       //Form body information to send to the back end (req.body)
     componentInfo,
     //send the cookies across domains
@@ -25,4 +22,6 @@ export class ExcerciseServiceService {
   //parse the json
   .map(res => res.json());
   }//close newReview
+
+
 }

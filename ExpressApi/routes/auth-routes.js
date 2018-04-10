@@ -71,7 +71,7 @@ router.post('/api/signup', ensureLoggedOut(), (req, res, next) => {
     ); // close UserModel.findOne()
 }); // close router.post('/signup', ...
 
-router.post('/api/login', ensureLoggedOut(), (req, res, next) =>{
+router.post('/api/login',  (req, res, next) =>{
   const authenticateFunction =
     passport.authenticate('local', (err, theUser, extraInfo) =>{
       if (err) {
@@ -93,6 +93,7 @@ router.post('/api/login', ensureLoggedOut(), (req, res, next) =>{
         // (not from the database, just from the object)
         theUser.encryptedPassword = undefined;
         // Everything worked! Send the user's information to the client.
+        console.log("End of login route show the user: " + theUser);
         res.status(200).json(theUser);
       });
     });

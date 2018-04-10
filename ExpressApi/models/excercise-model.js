@@ -35,6 +35,10 @@ const myExcerciseSchema = new Schema (
       required: false,
       default: false
     },
+    urlLink: {
+      type: String,
+      required: false
+    },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true }
   },
   {

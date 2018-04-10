@@ -3,25 +3,97 @@ Welcome Back {{data[0]?.fullName}}
 
   <div class="col-sm-12">
     <div class="row btn">
-
-      <div class="col-6 btn btn-primary create text-center"> Create a Workout
-      </div>
-      <div class="col-sm-6 btn btn-primary create text-center"> Create an Excercise
-     </div>
-
+      <button type="button" class="col-sm-6 btn btn-primary create text-center" data-toggle="modal" data-target="#workoutModal"> Create an Workout
+      </button>
+      <button type="button" class="col-sm-6 btn btn-primary create text-center" data-toggle="modal" data-target="#excerciseModal"> Create an Excercise
+      </button>
     </div>
-    <div class="row">
-    </div>
-
-
   </div>
 
+  <div class="col-sm-12 lane">
+    <div class="row show-row">
+      <h2>Workouts</h2>
+      <span *ngIf=!workoutsVisible class="glyphicon glyphicon-collapse-down" (click)="showWorkouts()"></span>
+      <span *ngIf=workoutsVisible class="glyphicon glyphicon-collapse-up" (click)="hideWorkouts()"></span>
+    </div>
+    <div *ngIf=workoutsVisible>
+      <div *ngFor="let workout of data[0]?.workouts" class="each_workout" >
+        <p>{{workout.name}}</p>
+        <p>{{workout.duration}}</p>
+        <p>Excercises:{{workout.excercises.length}}</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal fade" id="excerciseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create an Excercise
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveNewExcercise()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" placeholder="required" [(ngModel)] = "excerciseInfo.excerciseName" name = "excerciseName">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Weight</label>
+            <input type="number" class="form-control"  placeholder="Numbers Only" [(ngModel)] = "excerciseInfo.excerciseWeight" name = "excerciseWeight">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Reps</label>
+            <input type="number" class="form-control"  placeholder="Numbers Only" [(ngModel)] = "excerciseInfo.excerciseReps" name = "excerciseReps">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Video URL</label>
+            <input type="text" class="form-control"  placeholder="Optional" [(ngModel)] = "excerciseInfo.urlLink" name = "urlLink">
+          </div>
+        </form>
+      </div>
+        <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary" (click)='saveNewExcercise()'>Create Excercise</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-
-
-
+  <div class="modal fade" id="workoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create an Excercise
+        </h5>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="saveNewWorkout()">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" placeholder="required" [(ngModel)] = "workoutInfo.workoutName" name = "workoutName">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Duration</label>
+            <input type="number" class="form-control"  placeholder="Time in minutes" [(ngModel)] = "workoutInfo.workoutDuration" name = "workoutDuration">
+          </div>
+          <!-- <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Reps</label>
+            <input type="number" class="form-control"  placeholder="Numbers Only" [(ngModel)] = "excerciseInfo.excerciseReps" name = "excerciseReps">
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Video URL</label>
+            <input type="text" class="form-control"  placeholder="Optional" [(ngModel)] = "excerciseInfo.urlLink" name = "urlLink">
+          </div> -->
+        </form>
+      </div>
+        <div class="modal-footer">
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-primary" (click)='saveNewWorkout()'>Create Workout</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

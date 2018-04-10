@@ -7,7 +7,7 @@ const UserModel = require('../models/user-model');
 // const authorizeBill = require('../middleware/authorize-bill');
 const router = express.Router();
 
-router.post('/api/excercise', (req, res, next) => {
+router.post('/api/excercise/new', (req, res, next) => {
 if(!req.user) {
     res.status(401).json({message: 'Log in to create an excercise.'})
     return;
@@ -17,8 +17,17 @@ const theExcercise = new ExcerciseModel({
   weight: req.body.excerciseWeight,
   reps: req.body.excerciseReps,
   privateExcercise: req.body.excercisePrivacy,
+  urlLink:req.body.urlLink,
   user: req.user._id
   });
+  //Push the excercise into the User's Array
+  req.user.excercises.push(theExcercise._id);
+  req.user.save((err)=>{
+      if (err) {
+          res.json(err);
+          return;
+        }
+      });
 //Handle the unknown errors from the database.
 theExcercise.save((err) =>{
   if(err && theExcercise.errors === undefined){
@@ -62,7 +71,8 @@ router.post('/api/excercise/:id/edit', (req, res, next) => {
     weight: req.body.excerciseWeight,
     reps: req.body.excerciseReps,
     prWeight: req.body.excercisePrWeight,
-    prReps: req.body.excercisePrReps
+    prReps: req.body.excercisePrReps,
+    urlLink: req.body.urlLink
   };
     ExcerciseModel.findByIdAndUpdate(excerciseId, updates, (err, excercise) => {
       if (err) {return next(err);}
