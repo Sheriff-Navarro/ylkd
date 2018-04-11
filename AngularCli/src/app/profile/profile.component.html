@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <div class="container">
 Welcome Back {{data[0]?.fullName}}
 
@@ -17,10 +18,15 @@ Welcome Back {{data[0]?.fullName}}
       <span *ngIf=workoutsVisible class="glyphicon glyphicon-collapse-up" (click)="hideWorkouts()"></span>
     </div>
     <div *ngIf=workoutsVisible>
-      <div *ngFor="let workout of data[0]?.workouts" class="each_workout" >
-        <p>{{workout.name}}</p>
-        <p>{{workout.duration}}</p>
-        <p>Excercises:{{workout.excercises.length}}</p>
+      <div class="row">
+        <div *ngFor="let workout of data[0]?.workouts" class="each_workout" >
+            <div class="col">
+              <p>{{workout.name}}</p>
+              <p>{{workout.duration}}</p>
+              <p>Excercises:{{workout.excercises.length}}</p>
+            </div>
+            <a class="col" [routerLink]="['/workout', workout._id]"> View Workout</a>
+          </div>
       </div>
     </div>
   </div>
@@ -98,3 +104,6 @@ Welcome Back {{data[0]?.fullName}}
 
 
 </div>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

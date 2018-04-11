@@ -89,16 +89,16 @@ export class ProfileComponent implements OnInit {
       })
     }
 
-    getThemProfile() {
-  this.profileThang.getProfile()
-  .subscribe(
-    (data) => { this.data = data;
-    console.log("This data: ", this.data) },
-    () => {
-      this.retrieveProfileError = 'Sorry, could not retrieve all the recipes'
-    }
-  );
-}//close getThemRecipes.
+  getThemProfile() {
+    this.profileThang.getProfile()
+    .subscribe(
+      (data) => { this.data = data;
+        console.log("This data: ", this.data) },
+        () => {
+          this.retrieveProfileError = 'Sorry, could not retrieve all the recipes'
+        }
+      );
+    }//close getThemRecipes.
 
 saveNewExcercise(){
   this.excerciseThang.newExcercise(this.excerciseInfo)

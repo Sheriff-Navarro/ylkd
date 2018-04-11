@@ -23,5 +23,14 @@ export class WorkoutServiceService {
   .map(res => res.json());
   }//close newReview
 
+  getSpecificWorkout(id) {
+    return this.httpThang
+    .get(`${environment.apiBase}/api/workout/:id`,
+    //Form body information to send to the back end (req.body)
+    {withCredentials: true}
+    )
+    //parse the json
+    .map(res => res.json());
+  }
 
 }

@@ -12,13 +12,15 @@ import { AuthServiceService } from './services/auth-service.service';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileServiceService } from './services/profile-service.service';
 import { ExcerciseServiceService } from './services/excercise-service.service';
+import { WorkoutComponent } from './workout/workout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    WorkoutComponent
   ],
   imports: [
     BrowserModule,
