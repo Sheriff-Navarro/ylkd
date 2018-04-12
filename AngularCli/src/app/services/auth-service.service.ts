@@ -28,6 +28,27 @@ export class AuthServiceService {
         .then(res => res.json());
   } // close login()
 
+signUp(componentInfo) {
+  return this.httpThang
+    .post(
+      `${environment.apiBase}/api/signup`,
+      //Form body information to send to the back end (req.body)
+      {
+      signupFullName: componentInfo.fullName,
+      signUpEmail: componentInfo.email,
+      signupPassword: componentInfo.encryptedPassword,
+      signupPicture: componentInfo.picture,
+      signupWeight: componentInfo.Weight,
+      signupHeight: componentInfo.Height
+    },
+    //Send the cookies across domains
+      { withCredentials: true }
+    )
+    //Convert from observable to toPromise
+    .toPromise()
+    //Parse the JSON
+    .then(res => res.json());
+}//close Signup
 
 checklogin() {
       return this.httpThang

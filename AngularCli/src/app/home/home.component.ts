@@ -19,13 +19,19 @@ signUpInfo = {
     fullName: '',
     email: '',
     password: '',
-    picture: ''
+    picture: '',
+    weight: undefined,
+    height: undefined
   };
+
 baseUrl = environment.apiBase;
 currentUser: any = {};
 loginErrorMessage: string;
 saveError: string;
 errorMessage: string;
+signUpErrorMessage: string;
+loginVisible: false;
+signUpVisible: false;
 
   constructor(
     private routerThang: Router,
@@ -34,6 +40,22 @@ errorMessage: string;
   ) { }
 
   ngOnInit() {
+  }
+
+  showSignUp(){
+    signUpVisible = true;
+  }
+
+  hideSignUp() {
+    signUpVisible = false;
+  }
+
+  showLogin() {
+    loginVisible = true;
+  }
+
+  hideLogin() {
+    loginVisible = false;
   }
 
   doLogin() {
@@ -53,5 +75,26 @@ errorMessage: string;
       this.loginErrorMessage = parsedError.message + ' 😤';
     })
   } //close doLogin()
+
+
+  doSignup() {
+    this.authThang.signUp(this.signUpInfo)
+    .then((resultFromApi)=> {
+      this.signUpInfo = {
+        fullName: '',
+        email: '',
+        password: '',
+        picture: '',
+        weight: undefined,
+        height: undefined
+      };
+      this.signUpErrorMessage = "";
+      this.routerThang.navigate(['/profile'])
+    })
+    .catch((err) => {
+      const parsedError = err.json();
+      this.loginErrorMessage = parsedError.message + ' 😤';
+    })
+  } //close doSignup()
 
 }
