@@ -22,34 +22,34 @@
           </p>
           <div class="form-group col-lg-6">
             <label for="signup-email-input">Email address</label>
-            <input type="email" class="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="signUp.email" name="signUpEmail">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input type="email" class="form-control input" id="loginInputEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="signUpInfo.email" name="signUpEmail">
+            <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group col-lg-6">
             <label for="signup-pass-input">Password</label>
-            <input type="password" class="form-control input" id="exampleInputPassword1" placeholder="********" [(ngModel)]="signUp.password" name="signUpPassword">
+            <input type="password" class="form-control input" id="loginInputPassword" placeholder="********" [(ngModel)]="signUpInfo.password" name="signUpPassword">
           </div>
           <div class="form-group col-lg-6">
             <label for="signup-fullName-input">Full Name</label>
-            <input type="string" class="form-control input" id="exampleInputFullName" aria-describedby="emailHelp" placeholder="Enter your full name." [(ngModel)]="signUp.fullName" name="signUpFullName">
+            <input type="string" class="form-control input" id="loginInputFullName" aria-describedby="emailHelp" placeholder="Enter your full name." [(ngModel)]="signUpInfo.fullName" name="signUpFullName">
           </div>
           <div class="form-group col-lg-6">
             <label for="signup-weight-input">Weight</label>
-            <input type="number" class="form-control input" id="exampleInputWeight" placeholder="Give your weight in pounds." [(ngModel)]="signUp.weight" name="signUpWeight">
+            <input type="number" class="form-control input" id="loginInputWeight" placeholder="Give your weight in pounds." [(ngModel)]="signUpInfo.weight" name="signUpWeight">
           </div>
           <div class="form-group col-lg-6">
             <label for="login-pass-input">Height</label>
-            <input type="number" class="form-control input" id="exampleInputHeight" placeholder="Give your height in inches" [(ngModel)]="signUp.height" name="signUpHeight">
+            <input type="number" class="form-control input" id="loginInputHeight" placeholder="Give your height in inches" [(ngModel)]="signUpInfo.height" name="signUpHeight">
           </div>
           <div class="form-group col-lg-6">
             <label for="login-pass-input">Picture URL</label>
-            <input type="string" class="form-control input" id="exampleInputPicture" placeholder="Provide an image URL. (Optional)" [(ngModel)]="signUp.picture" name="signUpPicture">
+            <input type="string" class="form-control input" id="loginInputPicture" placeholder="Provide an image URL. (Optional)" [(ngModel)]="signUpInfo.picture" name="signUpPicture">
           </div>
         </form>
       </div>
         <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <button (click)="doSignup()" type="submit" class="btn btn-primary">Sign Up</button>
+         <button data-dismiss="modal" (click)="doSignup()" type="submit" class="btn btn-primary">Sign Up</button>
         </div>
       </div>
     </div>
@@ -70,18 +70,18 @@
           </p>
           <div class="form-group col-lg-6">
             <label for="login-email-input">Email address</label>
-            <input type="email" class="form-control input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="loginInfo.email" name="loginEmail">
+            <input type="email" class="form-control input" id="signupInputEmail" aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="loginInfo.email" name="loginEmail">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group col-lg-6">
             <label for="login-pass-input">Password</label>
-            <input type="password" class="form-control input" id="exampleInputPassword1" placeholder="********" [(ngModel)]="loginInfo.password" name="loginPassword">
+            <input type="password" class="form-control input" id="signupInputPassword" placeholder="********" [(ngModel)]="loginInfo.password" name="loginPassword">
           </div>
         </form>
       </div>
         <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <button (click)="doLogin()" type="submit" class="btn btn-primary">Sign Up</button>
+         <button data-dismiss="modal" (click)="doLogin()" type="submit" class="btn btn-primary">Login</button>
         </div>
       </div>
     </div>

@@ -31,6 +31,27 @@ Welcome Back {{data[0]?.fullName}}
     </div>
   </div>
 
+  <div class="col-sm-12 lane">
+    <div class="row show-row">
+      <h2>Excercises</h2>
+      <span *ngIf=!excercisesVisible class="glyphicon glyphicon-collapse-down" (click)="showExcercises()"></span>
+      <span *ngIf=excercisesVisible class="glyphicon glyphicon-collapse-up" (click)="hideExcercises()"></span>
+    </div>
+    <div *ngIf=excercisesVisible>
+      <div class="row">
+        <div *ngFor="let workout of data[0]?.excercises" class="each_workout" >
+            <div class="col">
+              <p>{{excercise.name}}</p>
+              <p>{{excercise.weight}}</p>
+              <p>{{excercise.reps}}</p>
+              <p></p>
+            </div>
+            <!-- <a class="col" [routerLink]="['/workout', workout._id]"> View Workout</a> -->
+          </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="excerciseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -60,7 +81,7 @@ Welcome Back {{data[0]?.fullName}}
       </div>
         <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <button type="button" class="btn btn-primary" (click)='saveNewExcercise()'>Create Excercise</button>
+         <button data-dismiss="modal" type="button" class="btn btn-primary" (click)='saveNewExcercise()'>Create Excercise</button>
         </div>
       </div>
     </div>
@@ -95,7 +116,7 @@ Welcome Back {{data[0]?.fullName}}
       </div>
         <div class="modal-footer">
          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <button type="button" class="btn btn-primary" (click)='saveNewWorkout()'>Create Workout</button>
+         <button data-dismiss="modal" type="button" class="btn btn-primary" (click)='saveNewWorkout()'>Create Workout</button>
         </div>
       </div>
     </div>

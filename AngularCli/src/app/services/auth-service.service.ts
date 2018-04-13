@@ -35,8 +35,8 @@ signUp(componentInfo) {
       //Form body information to send to the back end (req.body)
       {
       signupFullName: componentInfo.fullName,
-      signUpEmail: componentInfo.email,
-      signupPassword: componentInfo.encryptedPassword,
+      signupEmail: componentInfo.email,
+      signupPassword: componentInfo.password,
       signupPicture: componentInfo.picture,
       signupWeight: componentInfo.Weight,
       signupHeight: componentInfo.Height

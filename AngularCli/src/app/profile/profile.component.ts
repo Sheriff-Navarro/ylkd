@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit {
   paramsId = undefined;
   data: any = {};
   retrieveProfileError: string;
-  workoutsVisible  = false;
-  excercisesVisible = false;
+  workoutsVisible:boolean  = false;
+  excercisesVisible:boolean = false;
 
   excerciseInfo = {
     excerciseName: "",
