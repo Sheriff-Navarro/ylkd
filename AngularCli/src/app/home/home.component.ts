@@ -30,8 +30,8 @@ loginErrorMessage: string;
 saveError: string;
 errorMessage: string;
 signUpErrorMessage: string;
-loginVisible: false;
-signUpVisible: false;
+loginVisible:boolean = false;
+signUpVisible:boolean = false;
 
   constructor(
     private routerThang: Router,
@@ -42,20 +42,20 @@ signUpVisible: false;
   ngOnInit() {
   }
 
-  showSignUp(){
-    signUpVisible = true;
-  }
+  showSignUp() {
+  this.signUpVisible = true;
+}
 
   hideSignUp() {
-    signUpVisible = false;
+    this.signUpVisible = false;
   }
 
   showLogin() {
-    loginVisible = true;
+    this.loginVisible = true;
   }
 
   hideLogin() {
-    loginVisible = false;
+    this.loginVisible = false;
   }
 
   doLogin() {

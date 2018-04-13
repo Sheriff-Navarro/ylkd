@@ -172,7 +172,9 @@ router.get('/api/workout/all', (req, res, next) => {
 })
 
 router.get('/api/workout/:id', (req, res, next) => {
-  const workoutId = req.params.id
+  console.log("req params", req.params.id);
+  const workoutId = req.params.id;
+  console.log("This workoutId: ", workoutId);
   WorkoutModel.findById(workoutId, (err, theWorkout)=>{
     if (err) { return next(err) }
   })
