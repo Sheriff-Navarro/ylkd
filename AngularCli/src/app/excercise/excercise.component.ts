@@ -7,12 +7,12 @@ import {ExcerciseServiceService } from '../services/excercise-service.service';
 import {WorkoutServiceService} from '../services/workout-service.service'
 
 @Component({
-  selector: 'app-workout',
-  templateUrl: './workout.component.html',
-  styleUrls: ['./workout.component.css'],
-  providers: [AuthServiceService, ProfileServiceService, ExcerciseServiceService, WorkoutServiceService]
+  selector: 'app-excercise',
+  templateUrl: './excercise.component.html',
+  styleUrls: ['./excercise.component.css'],
+  providers:[AuthServiceService, ProfileServiceService, ExcerciseServiceService, WorkoutServiceService]
 })
-export class WorkoutComponent implements OnInit {
+export class ExcerciseComponent implements OnInit {
   baseUrl = environment.apiBase;
   currentUser: any = {};
   paramsId = undefined;
@@ -20,26 +20,8 @@ export class WorkoutComponent implements OnInit {
   retrieveProfileError: string;
   workoutsVisible  = false;
   excercisesVisible = false;
-
   workout: any = {};
-
-  excerciseInfo = {
-    excerciseName: "",
-    excerciseWeight: undefined,
-    excerciseReps: undefined,
-    excercisePrivacy: undefined,
-    urlLink: ""
-  }
-
-
-  workoutInfo = {
-    workoutName: "",
-    workoutDuration: undefined
-  }
-
-  excerciseSaveError: string;
-  workoutSaveError: string;
-
+  excercise: any = {};
 
   constructor(
     private routerThang: Router,
@@ -56,7 +38,7 @@ export class WorkoutComponent implements OnInit {
          this.currentUser = userFromApi;
          console.log(this.currentUser);
          this.route.params.subscribe(params => {
-           this.getWorkoutDetails(params['id']);
+           this.getExcerciseDetails(params['id']);
           })
         })
      .catch(() => {
@@ -66,21 +48,20 @@ export class WorkoutComponent implements OnInit {
      // this.checkSavedRecipes();
  } //
 
-  getParams() {
-  this.route.params.subscribe(params=> {
-    this.paramsId = params['id'];
-    console.log("Params Id ", this.paramsId)
-  })
-}
-
-getWorkoutDetails(id) {
-    this.workoutThang.getSpecificWorkout(id)
-    .subscribe((workout) =>{
-      console.log('RES = ', workout);
-      this.workout = workout;
+ getParams() {
+ this.route.params.subscribe(params=> {
+   this.paramsId = params['id'];
+   console.log("Params Id ", this.paramsId)
     })
-  }
+ }
 
+ getExcerciseDetails(id) {
+     this.excerciseThang.getSpecificExcercise(id)
+     .subscribe((workout) =>{
+       console.log('RES = ', workout);
+       this.workout = workout;
+     })
+   }
 
 
 }

@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   paramsId = undefined;
   data: any = {};
   retrieveProfileError: string;
-  workoutsVisible:boolean  = false;
+  workoutsVisible:boolean = false;
   excercisesVisible:boolean = false;
 
   excerciseInfo = {
@@ -130,5 +130,7 @@ saveNewWorkout() {
     }//close newWorkoutFromApi
   );//close subscribe
 }//close saveNewWorkout
+
+
 
 }

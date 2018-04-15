@@ -25,4 +25,14 @@ export class ExcerciseServiceService {
   //parse the json
   .map(res => res.json());
   }//close newReview
+
+  getSpecificExcercise(id) {
+    return this.httpThang
+    .get(`${environment.apiBase}/api/excercise/${id}`,
+    //Form body information to send to the back end (req.body)
+    {withCredentials: true}
+    )
+    //parse the json
+    .map(res => res.json());
+  }
 }

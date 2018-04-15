@@ -175,7 +175,7 @@ router.get('/api/workout/:id', (req, res, next) => {
   console.log("req params", req.params.id);
   const workoutId = req.params.id;
   console.log("This workoutId: ", workoutId);
-  WorkoutModel.findById(workoutId, (err, theWorkout)=>{
+  WorkoutModel.findById(req.params.id, (err, theWorkout)=>{
     if (err) { return next(err) }
   })
   .populate('user', { encryptedPassword : 0})

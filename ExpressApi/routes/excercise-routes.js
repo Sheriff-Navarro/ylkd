@@ -81,4 +81,23 @@ router.post('/api/excercise/:id/edit', (req, res, next) => {
     });
 });
 
+//Get Specific Workout Route
+router.get('/api/excercise/:id', (req, res, next) => {
+  console.log("excercise req params", req.params.id);
+  const excerciseId = req.params.id;
+  console.log("This excerciseId: ", excerciseId);
+  ExcerciseModel.findById(req.params.id, (err, theExcercise)=>{
+    if (err) { return next(err) }
+  })
+  .populate('user', { encryptedPassword : 0})
+  .exec((err, theExcercise)=>{
+    if (err) {
+      res.status(500).json({message: 'Could not retrieve the excercise.'})
+      return;
+    }
+    res.status(200).json(theExcercise);
+  })
+})
+
+
 module.exports = router;

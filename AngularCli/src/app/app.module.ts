@@ -13,6 +13,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileServiceService } from './services/profile-service.service';
 import { ExcerciseServiceService } from './services/excercise-service.service';
 import { WorkoutComponent } from './workout/workout.component';
+import { ExcerciseComponent } from './excercise/excercise.component';
+import { WorkoutServiceService } from './services/workout-service.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { WorkoutComponent } from './workout/workout.component';
     NavbarComponent,
     HomeComponent,
     ProfileComponent,
-    WorkoutComponent
+    WorkoutComponent,
+    ExcerciseComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { WorkoutComponent } from './workout/workout.component';
   providers: [
     AuthServiceService,
     ProfileServiceService,
-    ExcerciseServiceService
+    ExcerciseServiceService,
+    WorkoutServiceService
   ],
   bootstrap: [AppComponent]
 })

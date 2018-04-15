@@ -39,14 +39,14 @@ Welcome Back {{data[0]?.fullName}}
     </div>
     <div *ngIf=excercisesVisible>
       <div class="row">
-        <div *ngFor="let workout of data[0]?.excercises" class="each_workout" >
+        <div *ngFor="let excercise of data[0]?.excercises" class="each_workout" >
             <div class="col">
-              <p>{{excercise.name}}</p>
-              <p>{{excercise.weight}}</p>
-              <p>{{excercise.reps}}</p>
+              <p>Name: {{excercise.name}}</p>
+              <p>Weight: {{excercise.weight}}</p>
+              <p>Reps: {{excercise.reps}}</p>
               <p></p>
             </div>
-            <!-- <a class="col" [routerLink]="['/workout', workout._id]"> View Workout</a> -->
+            <a class="col" [routerLink]="['/excercise', excercise._id]"> View Excercise</a>
           </div>
       </div>
     </div>
