@@ -1,0 +1,50 @@
+.container {
+  margin: 20px;
+}
+
+.row .btn {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap; */
+}
+
+.btn .create {
+
+}
+
+.show-row {
+  margin-top: 30px;
+  border-bottom: 1px solid grey;
+}
+
+.show-row h2 {
+  display: inline-block;
+}
+
+.glyphicon-collapse-down {
+  float: right;
+  padding-top: 25px;
+  font-size: 20px;
+  color:grey;
+}
+
+.glyphicon-collapse-up {
+  float: right;
+  padding-top: 25px;
+  font-size: 20px;
+  color:grey;
+}
+
+.each_workout {
+  padding: 15px;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.lane {
+  padding:0px;
+}

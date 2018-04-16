@@ -1,3 +1,39 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <p>
   workout works!
 </p>
+
+
+<div class="container">
+
+<div class="col-sm-12 lane">
+  <div class="row show-row">
+    <h2>Add Excercises</h2>
+    <span *ngIf=!excercisesVisible class="glyphicon glyphicon-collapse-down" (click)="showExcercises()"></span>
+    <span *ngIf=excercisesVisible class="glyphicon glyphicon-collapse-up" (click)="hideExcercises()"></span>
+  </div>
+  <div *ngIf=excercisesVisible>
+  <div class="input-group col-12">
+        <input id="things_name" type="text" class="form-control" placeholder="Filter Excercises" aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="pattern">
+  </div>
+    <div class="row">
+      <div *ngFor="let excercise of data[0]?.excercises | filter: 'name': pattern" class="each_workout">
+          <div class="col">
+            <p>Name: {{excercise.name}}</p>
+            <p>Weight: {{excercise.weight}}</p>
+            <p>Reps: {{excercise.reps}}</p>
+            <p></p>
+          </div>
+          <a class="col" [routerLink]="['/excercise', excercise._id]"> View Excercise</a>
+          <button data-dismiss="modal" (click)='addExcercise(workout._id, excercise._id)' type="submit" class="btn btn-primary">Add to Workout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

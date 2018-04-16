@@ -78,7 +78,7 @@ export class ExcerciseComponent implements OnInit {
      addExcercise(workoutId, excerciseId){
        //send both the :excerciseId and the :workoutId
   console.log("Workout Id   ", workoutId);
-  console.log("Workout Id   ", excerciseId);
+  console.log("excercise Id   ", excerciseId);
   this.excerciseThang.addExcerciseToWorkout(workoutId, excerciseId)
   // .subscribe()
   .subscribe((excercise) =>{

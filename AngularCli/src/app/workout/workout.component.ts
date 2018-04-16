@@ -56,6 +56,7 @@ export class WorkoutComponent implements OnInit {
          this.currentUser = userFromApi;
          console.log(this.currentUser);
          this.route.params.subscribe(params => {
+           this.getThemProfile();
            this.getWorkoutDetails(params['id']);
           })
         })
@@ -65,6 +66,14 @@ export class WorkoutComponent implements OnInit {
      this.getParams();
      // this.checkSavedRecipes();
  } //
+
+ hideExcercises(){
+   this.excercisesVisible = false;
+ }
+
+ showExcercises() {
+   this.excercisesVisible = true;
+ }
 
   getParams() {
   this.route.params.subscribe(params=> {
@@ -81,6 +90,28 @@ getWorkoutDetails(id) {
     })
   }
 
+  getThemProfile() {
+    this.profileThang.getProfile()
+    .subscribe(
+      (data) => { this.data = data;
+        console.log("This data: ", this.data) },
+        () => {
+          this.retrieveProfileError = 'Sorry, could not retrieve all the recipes'
+        }
+      );
+    }//close getThemRecipes.
+
+    addExcercise(workoutId, excerciseId){
+      //send both the :excerciseId and the :workoutId
+    console.log("Workout Id   ", workoutId);
+    console.log("excercise Id   ", excerciseId);
+    this.excerciseThang.addExcerciseToWorkout(workoutId, excerciseId)
+    // .subscribe()
+    .subscribe((excercise) =>{
+    console.log('RES = ', excercise);
+    this.excercise = excercise;
+    })
+    }
 
 
 }
