@@ -39,6 +39,7 @@ export class ExcerciseComponent implements OnInit {
          console.log(this.currentUser);
          this.route.params.subscribe(params => {
            this.getExcerciseDetails(params['id']);
+           this.getThemProfile();
           })
         })
      .catch(() => {
@@ -51,17 +52,39 @@ export class ExcerciseComponent implements OnInit {
  getParams() {
  this.route.params.subscribe(params=> {
    this.paramsId = params['id'];
-   console.log("Params Id ", this.paramsId)
     })
  }
 
  getExcerciseDetails(id) {
      this.excerciseThang.getSpecificExcercise(id)
-     .subscribe((workout) =>{
-       console.log('RES = ', workout);
-       this.workout = workout;
+     .subscribe((excercise) =>{
+       this.excercise = excercise;
+       console.log("This Excercise: ", this.excercise)
      })
    }
 
+   getThemProfile() {
+     this.profileThang.getProfile()
+     .subscribe(
+       (data) => { this.data = data;
+         console.log("This data: ", this.data) },
+         () => {
+           this.retrieveProfileError = 'Sorry, could not retrieve all the recipes'
+         }
+       );
+     }//close getThemRecipes.
+
+
+     addExcercise(workoutId, excerciseId){
+       //send both the :excerciseId and the :workoutId
+  console.log("Workout Id   ", workoutId);
+  console.log("Workout Id   ", excerciseId);
+  this.excerciseThang.addExcerciseToWorkout(workoutId, excerciseId)
+  // .subscribe()
+  .subscribe((excercise) =>{
+    console.log('RES = ', excercise);
+    this.excercise = excercise;
+  })
+}
 
 }

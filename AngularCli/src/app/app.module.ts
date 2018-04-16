@@ -10,11 +10,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { AuthServiceService } from './services/auth-service.service';
 import { ProfileComponent } from './profile/profile.component';
-import { ProfileServiceService } from './services/profile-service.service';
-import { ExcerciseServiceService } from './services/excercise-service.service';
 import { WorkoutComponent } from './workout/workout.component';
 import { ExcerciseComponent } from './excercise/excercise.component';
+//services
+import { ProfileServiceService } from './services/profile-service.service';
+import { ExcerciseServiceService } from './services/excercise-service.service';
 import { WorkoutServiceService } from './services/workout-service.service';
+//pipes
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { WorkoutServiceService } from './services/workout-service.service';
     HomeComponent,
     ProfileComponent,
     WorkoutComponent,
-    ExcerciseComponent
+    ExcerciseComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

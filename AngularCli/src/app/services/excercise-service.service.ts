@@ -35,4 +35,14 @@ export class ExcerciseServiceService {
     //parse the json
     .map(res => res.json());
   }
+
+  addExcerciseToWorkout(workoutId, excerciseId) {
+      // var workoutId = {id:user._id}
+      return this.httpThang
+      .post(`${environment.apiBase}/api/workout/${workoutId}/addexcercise/${excerciseId}`,
+        {withCredentials:true}
+      )
+      //parse the JSON
+      .map(res => res.json());
+    }
 }

@@ -1,3 +1,38 @@
-<p>
-  excercise works!
-</p>
+<button type="button" class="col6 btn btn-primary create text-center" data-toggle="modal" data-target="#addExcercise"> Add to Workout
+</button>
+
+<div class="modal fade" id="addExcercise" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        Add <strong>{{excercise.name}}</strong> to a Workout
+      </h5>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="doSignup()">
+        <p *ngIf = "saveError" class = "error">
+        {{saveError}}
+        </p>
+          <div class="form-group">
+            <!-- <label for="exampleFormControlSelect1">Example select</label> -->
+            <!-- <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="data[0]?.workouts[i].name">
+              <div >
+                <option *ngFor="let workout of data[0]?.workouts" [value]="workout.name"> {{workout.name}}</option>
+              </div>
+            </select> -->
+            <div class="custom-control custom-radio" *ngFor="let workout of data[0]?.workouts">
+             <input type="radio" class="custom-control-input" id="customControlValidation2" name="radio-stacked" required>
+             <label class="custom-control-label" for="customControlValidation2">{{workout.name}}
+             </label>
+           </div>
+        </div>
+      </form>
+    </div>
+      <div class="modal-footer">
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+       <button data-dismiss="modal" (click)="doSignup()" type="submit" class="btn btn-primary">Add to Workout</button>
+      </div>
+    </div>
+  </div>
+</div>
