@@ -137,7 +137,7 @@ router.post('/api/workout/:id/delete', (req, res, next) => {
   //Assign billId to the params.id so mongoose can find the bill and delete it from the DB.
   const workoutId = req.params.id;
   //Delete post method
-  WorkoutModel.findByIdAndRemove(workoutId, (err, workout) => {
+  WorkoutModel.findByIdAndRemove(req.params.id, (err, workout) => {
     if(err){return next(err)}
     return res.status(200).json({message: 'The Workout has been deleted.'})
   });//BillModel.findByIdAndRemove close

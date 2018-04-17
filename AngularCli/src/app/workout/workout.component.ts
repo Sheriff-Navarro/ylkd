@@ -107,10 +107,17 @@ getWorkoutDetails(id) {
     console.log("excercise Id   ", excerciseId);
     this.excerciseThang.addExcerciseToWorkout(workoutId, excerciseId)
     // .subscribe()
-    .subscribe((excercise) =>{
-    console.log('RES = ', excercise);
-    this.excercise = excercise;
-    })
+    .subscribe((workout) =>{
+    console.log('RES = ', workout);
+    this.workout = workout;
+      })
+    }
+
+    deleteWorkout() {
+        this.workoutThang.deleteWorkout(this.workout._id)
+          .subscribe(() => {
+            this.routerThang.navigate(['/profile']);
+          });
     }
 
 

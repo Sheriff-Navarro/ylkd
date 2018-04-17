@@ -4,7 +4,11 @@ import { AuthServiceService } from '../services/auth-service.service';
 import { ProfileServiceService } from '../services/profile-service.service';
 import { environment } from '../../environments/environment';
 import {ExcerciseServiceService } from '../services/excercise-service.service';
-import {WorkoutServiceService} from '../services/workout-service.service'
+import {WorkoutServiceService} from '../services/workout-service.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/toPromise';
+
+
 
 @Component({
   selector: 'app-excercise',
@@ -22,6 +26,7 @@ export class ExcerciseComponent implements OnInit {
   excercisesVisible = false;
   workout: any = {};
   excercise: any = {};
+  errorMessage: string = "";
 
   constructor(
     private routerThang: Router,
@@ -75,16 +80,23 @@ export class ExcerciseComponent implements OnInit {
      }//close getThemRecipes.
 
 
-     addExcercise(workoutId, excerciseId){
-       //send both the :excerciseId and the :workoutId
-  console.log("Workout Id   ", workoutId);
-  console.log("excercise Id   ", excerciseId);
-  this.excerciseThang.addExcerciseToWorkout(workoutId, excerciseId)
-  // .subscribe()
-  .subscribe((excercise) =>{
-    console.log('RES = ', excercise);
-    this.excercise = excercise;
+  addExcercise(workoutId, excerciseId){
+        //send both the :excerciseId and the :workoutId
+        console.log("Workout Id   ", workoutId);
+        console.log("excercise Id   ", excerciseId);
+        this.excerciseThang.addExcerciseToWorkout(workoutId, excerciseId)
+        // .subscribe()
+        .subscribe((excercise) =>{
+        console.log('RES = ', excercise);
+        this.excercise = excercise;
   })
 }
+
+    deleteExcercise() {
+        this.excerciseThang.deleteExcercise(this.excercise._id)
+          .subscribe(() => {
+            this.routerThang.navigate(['/profile']);
+          });
+    }
 
 }

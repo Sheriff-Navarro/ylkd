@@ -45,4 +45,15 @@ export class ExcerciseServiceService {
       //parse the JSON
       .map(res => res.json());
     }
+
+
+    //DELETE------------------------------------------------------------------
+deleteExcercise(id){
+return this.httpThang
+.post(
+  `${environment.apiBase}/api/excercise/${id}/delete`,
+  { withCredentials: true })
+  .map( res => res.json())
+  }
+
 }

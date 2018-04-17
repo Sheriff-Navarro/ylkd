@@ -57,7 +57,8 @@ theExcercise.save((err) =>{
 
 router.post('/api/excercise/:id/delete', (req, res, next) => {
   const excerciseId = req.params.id;
-  ExcerciseModel.findByIdAndRemove(excerciseId, (err, excercise) => {
+  console.log(req.params.id);
+  ExcerciseModel.findByIdAndRemove(req.params.id, (err, excercise) => {
     if(err){return next(err)}
     return res.status(200).json({message: 'Excercise deleted.'})
   })

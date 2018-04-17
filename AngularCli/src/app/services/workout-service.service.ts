@@ -33,4 +33,12 @@ export class WorkoutServiceService {
     .map(res => res.json());
   }
 
+  deleteWorkout(id){
+    return this.httpThang
+    .post(
+      `${environment.apiBase}/api/workout/${id}/delete`,
+      { withCredentials: true })
+      .map( res => res.json())
+      }
+
 }
